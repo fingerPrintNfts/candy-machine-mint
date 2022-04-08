@@ -30,7 +30,7 @@ const theme = createTheme({
 const getCandyMachineId = (): anchor.web3.PublicKey | undefined => {
   try {
     const candyMachineId = new anchor.web3.PublicKey(
-      '4ME2P8JC44rDAVMwjAYhHEnWVbhtxuWipUpSuKGYQXNy'
+      process.env.REACT_APP_CANDY_MACHINE_ID!,
     );
 
     return candyMachineId;
@@ -41,8 +41,8 @@ const getCandyMachineId = (): anchor.web3.PublicKey | undefined => {
 };
 
 const candyMachineId = getCandyMachineId();
-const network = WalletAdapterNetwork.Devnet;
-const rpcHost = 'https://api.devnet.solana.com/';
+const network = process.env.REACT_APP_SOLANA_NETWORK as WalletAdapterNetwork;
+const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST!;
 const connection = new anchor.web3.Connection(
   rpcHost ? rpcHost : anchor.web3.clusterApiUrl('devnet'),
 );
