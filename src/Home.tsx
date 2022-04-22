@@ -428,7 +428,7 @@ const Home = (props: HomeProps) => {
                   </Grid>
                 </Grid>
               )}
-              <MintContainer>
+              <MintContainer style={{backgroundColor: 'rgb(22 25 57)'}}>
                 {candyMachine?.state.isActive &&
                 candyMachine?.state.gatekeeper &&
                 wallet.publicKey &&
@@ -534,7 +534,6 @@ const Home = (props: HomeProps) => {
             display="block"
             style={{ marginTop: 7, color: 'grey' }}
           >
-            Powered by METAPLEX
           </Typography>
         </Paper>
       </Container>

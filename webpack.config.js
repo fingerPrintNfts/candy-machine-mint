@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack');
 
 module.exports = {
  entry: './src/index.tsx',
@@ -42,6 +43,17 @@ module.exports = {
     "path": require.resolve("path-browserify")
    },
  },
+ plugins: [
+  new webpack.DefinePlugin({
+    'process.env.REACT_APP_LOG_LEVEL': JSON.stringify('info'),
+    'process.env.REACT_APP_SOLANA_NETWORK': JSON.stringify('devnet'),
+    'process.env.REACT_APP_SOLANA_RPC_HOST': JSON.stringify('https://api.devnet.solana.com/'),
+    'process.env.REACT_APP_CANDY_MACHINE_ID': JSON.stringify('4ME2P8JC44rDAVMwjAYhHEnWVbhtxuWipUpSuKGYQXNy'),
+  }),
+  new webpack.ProvidePlugin({
+    Buffer: ['buffer', 'Buffer'],
+  })
+ ],
  output: {
    path: __dirname + '/dist',
    publicPath: '/',
