@@ -328,7 +328,7 @@ const Home = (props: HomeProps) => {
           style={{
             padding: 24,
             paddingBottom: 10,
-            backgroundColor: '#151A1F',
+            backgroundColor: '#140c37',
             borderRadius: 6,
           }}
         >
@@ -428,7 +428,7 @@ const Home = (props: HomeProps) => {
                   </Grid>
                 </Grid>
               )}
-              <MintContainer style={{backgroundColor: 'rgb(22 25 57)'}}>
+              <MintContainer>
                 {candyMachine?.state.isActive &&
                 candyMachine?.state.gatekeeper &&
                 wallet.publicKey &&
