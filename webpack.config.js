@@ -47,7 +47,7 @@ module.exports = {
   new webpack.DefinePlugin({
     'process.env.REACT_APP_LOG_LEVEL': JSON.stringify('info'),
     'process.env.REACT_APP_SOLANA_NETWORK': JSON.stringify('mainnet-beta'),
-    'process.env.REACT_APP_SOLANA_RPC_HOST': JSON.stringify('https://solana-api.projectserum.com'),
+    'process.env.REACT_APP_SOLANA_RPC_HOST': JSON.stringify('https://api.mainnet-beta.solana.com'),
     'process.env.REACT_APP_CANDY_MACHINE_ID': JSON.stringify('DRLWsUvvpHcPPkiDq5k4GogrYLWqbeV9PSfHzEdoeJSM'),
   }),
   new webpack.ProvidePlugin({
