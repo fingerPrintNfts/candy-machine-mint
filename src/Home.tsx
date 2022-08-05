@@ -37,8 +37,8 @@ const ConnectButton = styled(WalletDialogButton)`
   width: 100%;
   height: 60px;
   margin-top: 10px;
-  margin-bottom: 5px;
-  background: linear-gradient(180deg, #604ae5 0%, #813eee 100%);
+  margin-bottom: 20px;
+  background: #c91fff ;
   color: white;
   font-size: 16px;
   font-weight: bold;
@@ -481,14 +481,14 @@ const Home = (props: HomeProps) => {
   return (
     <Container style={{ marginTop: 100 }}>
       <Container maxWidth="xs" style={{ position: 'relative' }}>
-        <Paper
+        {/* <Paper
           style={{
             padding: 24,
             paddingBottom: 10,
             backgroundColor: '#140c37',
             borderRadius: 6,
           }}
-        >
+        > */}
           {!wallet.connected ? (
             <ConnectButton>Connect Wallet</ConnectButton>
           ) : (
@@ -566,8 +566,16 @@ const Home = (props: HomeProps) => {
                       <>
                       {
                         candyMachine?.state?.isSoldOut ||
-                        (endDate && Date.now() < endDate.getTime()) && (
+                        (endDate && Date.now() < endDate.getTime()) && 
+                        userSolBalance >= Number(candyMachine.state.price ) &&
+                        (
                           <span className={classes.done}>{'LIVE ON'}</span>
+                        )
+                      }
+                      {
+                        userSolBalance <= Number(candyMachine.state.price ) && endDate && Date.now() < endDate.getTime() && isActive &&
+                        (
+                          <span className={classes.error}>{"YOU DONT'T HAVE ENOUGHT SOL"}</span>
                         )
                       }
                         <MintCountdown
@@ -580,7 +588,7 @@ const Home = (props: HomeProps) => {
                               ? 'COMPLETED'
                               : isPresale
                               ? 'PRESALE'
-                              : 'LIVE'
+                              : ( userSolBalance >= Number(candyMachine.state.price ) ? 'LIVE' : '' )
                           }
                           onComplete={toggleMintButton}
                         />
@@ -712,7 +720,7 @@ const Home = (props: HomeProps) => {
               </MintContainer>
             </>
           )}
-        </Paper>
+        {/* </Paper> */}
       </Container>
 
       <Snackbar

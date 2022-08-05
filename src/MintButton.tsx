@@ -16,8 +16,8 @@ export const CTAButton = styled(Button)`
   width: 100%;
   height: 60px;
   margin-top: 10px;
-  margin-bottom: 5px;
-  background: linear-gradient(180deg, #604ae5 0%, #813eee 100%);
+  margin-bottom: 10px;
+  background: #00e693;
   color: white;
   font-size: 16px;
   font-weight: bold;
@@ -98,7 +98,7 @@ export const MintButton = ({
 
   return (
     <CTAButton
-      disabled={isMinting || !isActive}
+      disabled={isMinting || !isActive }
       onClick={async () => {
         if (candyMachine?.state.isActive && candyMachine?.state.gatekeeper) {
           const network =
