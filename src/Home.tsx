@@ -43,6 +43,11 @@ const ConnectButton = styled(WalletDialogButton)`
   font-size: 16px;
   font-weight: bold;
 `;
+const Wrapper = styled.div`
+  &:hover ${ConnectButton} {
+    background-color: #00a3b9;
+  }
+`
 
 const MintContainer = styled.div``; // add your owns styles here
 
@@ -490,7 +495,9 @@ const Home = (props: HomeProps) => {
           }}
         > */}
           {!wallet.connected ? (
-            <ConnectButton>Connect Wallet</ConnectButton>
+            <Wrapper>
+              <ConnectButton>Connect Wallet</ConnectButton>
+            </Wrapper>
           ) : (
             <>
               {candyMachine && (

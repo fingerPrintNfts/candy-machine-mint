@@ -17,12 +17,16 @@ export const CTAButton = styled(Button)`
   height: 60px;
   margin-top: 10px;
   margin-bottom: 10px;
-  background: #00e693;
+  background: #c91fff;
   color: white;
   font-size: 16px;
   font-weight: bold;
 `; // add your own styles here
-
+const Wrapper = styled.div`
+  &:hover ${CTAButton} {
+    background-color: #00a3b9;
+  }
+`
 export const MintButton = ({
   onMint,
   candyMachine,
@@ -97,67 +101,69 @@ export const MintButton = ({
   }, [setIsMinting, previousGatewayStatus, gatewayStatus]);
 
   return (
-    <CTAButton
-      disabled={isMinting || !isActive }
-      onClick={async () => {
-        if (candyMachine?.state.isActive && candyMachine?.state.gatekeeper) {
-          const network =
-            candyMachine.state.gatekeeper.gatekeeperNetwork.toBase58();
-          if (network === 'ignREusXmGrscGNUesoU9mxfds9AiYTezUKex2PsZV6') {
-            if (gatewayStatus === GatewayStatus.ACTIVE) {
-              await onMint();
-            } else {
-              // setIsMinting(true);
-              await requestGatewayToken();
-              console.log('after: ', gatewayStatus);
-            }
-          } else if (
-            network === 'ttib7tuX8PTWPqFsmUFQTj78MbRhUmqxidJRDv4hRRE' ||
-            network === 'tibePmPaoTgrs929rWpu755EXaxC7M3SthVCf6GzjZt'
-          ) {
-            setClicked(true);
-            const gatewayToken = await findGatewayToken(
-              connection.connection,
-              wallet.publicKey!,
-              candyMachine.state.gatekeeper.gatekeeperNetwork,
-            );
-
-            if (gatewayToken?.isValid()) {
-              await onMint();
-            } else {
-              window.open(
-                `https://verify.encore.fans/?gkNetwork=${network}`,
-                '_blank',
+    <Wrapper>
+      <CTAButton
+        disabled={isMinting || !isActive }
+        onClick={async () => {
+          if (candyMachine?.state.isActive && candyMachine?.state.gatekeeper) {
+            const network =
+              candyMachine.state.gatekeeper.gatekeeperNetwork.toBase58();
+            if (network === 'ignREusXmGrscGNUesoU9mxfds9AiYTezUKex2PsZV6') {
+              if (gatewayStatus === GatewayStatus.ACTIVE) {
+                await onMint();
+              } else {
+                // setIsMinting(true);
+                await requestGatewayToken();
+                console.log('after: ', gatewayStatus);
+              }
+            } else if (
+              network === 'ttib7tuX8PTWPqFsmUFQTj78MbRhUmqxidJRDv4hRRE' ||
+              network === 'tibePmPaoTgrs929rWpu755EXaxC7M3SthVCf6GzjZt'
+            ) {
+              setClicked(true);
+              const gatewayToken = await findGatewayToken(
+                connection.connection,
+                wallet.publicKey!,
+                candyMachine.state.gatekeeper.gatekeeperNetwork,
               );
 
-              const gatewayTokenAddress =
-                await getGatewayTokenAddressForOwnerAndGatekeeperNetwork(
-                  wallet.publicKey!,
-                  candyMachine.state.gatekeeper.gatekeeperNetwork,
+              if (gatewayToken?.isValid()) {
+                await onMint();
+              } else {
+                window.open(
+                  `https://verify.encore.fans/?gkNetwork=${network}`,
+                  '_blank',
                 );
 
-              setWebSocketSubscriptionId(
-                onGatewayTokenChange(
-                  connection.connection,
-                  gatewayTokenAddress,
-                  () => setVerified(true),
-                  'confirmed',
-                ),
-              );
+                const gatewayTokenAddress =
+                  await getGatewayTokenAddressForOwnerAndGatekeeperNetwork(
+                    wallet.publicKey!,
+                    candyMachine.state.gatekeeper.gatekeeperNetwork,
+                  );
+
+                setWebSocketSubscriptionId(
+                  onGatewayTokenChange(
+                    connection.connection,
+                    gatewayTokenAddress,
+                    () => setVerified(true),
+                    'confirmed',
+                  ),
+                );
+              }
+            } else {
+              setClicked(false);
+              throw new Error(`Unknown Gatekeeper Network: ${network}`);
             }
           } else {
+            await onMint();
             setClicked(false);
-            throw new Error(`Unknown Gatekeeper Network: ${network}`);
           }
-        } else {
-          await onMint();
-          setClicked(false);
-        }
-      }}
-      variant="contained"
-    >
-      {getMintButtonContent()}
-    </CTAButton>
+        }}
+        variant="contained"
+      >
+        {getMintButtonContent()}
+      </CTAButton>
+    </Wrapper>
   );
 };
 

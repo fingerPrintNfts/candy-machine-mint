@@ -7,7 +7,6 @@ import { clusterApiUrl } from '@solana/web3.js';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
   getPhantomWallet,
-  getSlopeWallet,
   getSolflareWallet,
   getSolletWallet,
   getSolletExtensionWallet,
@@ -54,7 +53,6 @@ const App = () => {
     () => [
       getPhantomWallet(),
       getSolflareWallet(),
-      getSlopeWallet(),
       getSolletWallet({ network }),
       getSolletExtensionWallet({ network }),
     ],
