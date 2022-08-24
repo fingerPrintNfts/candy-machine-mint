@@ -514,48 +514,39 @@ const Home = (props: HomeProps) => {
                       alt={'Mint Collection'} width={"100%"}  height={"100%"}/>
                   </Grid>
                   <Grid item xs={4}>
+                  <span className={classes.done} style={{
+                    height: '100%'
+                  }}>
                     <Typography variant="body2" color="textSecondary">
                       Remaining
                     </Typography>
-                    <Typography
-                      variant="h6"
-                      color="textPrimary"
-                      style={{
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      {`${itemsRemaining}`}
-                    </Typography>
+                    {itemsRemaining}</span>
                   </Grid>
                   <Grid item xs={4}>
+                  <span className={classes.done} style={{
+                    height: '100%'
+                  }}>
                     <Typography variant="body2" color="textSecondary">
                       {isWhitelistUser && discountPrice
                         ? 'Discount Price'
                         : 'Floor Price'}
                     </Typography>
-                    <Typography
-                      variant="h6"
-                      color="textPrimary"
-                      style={{ fontWeight: 'bold' }}
-                    >
                       {isWhitelistUser && discountPrice
                         ? `${formatNumber.asNumber(discountPrice)} SOL`
                         : `${formatNumber.asNumber(
                             candyMachine.state.price,
                           )} SOL`}
-                    </Typography>
+                    </span>
                   </Grid>
                   <Grid item xs={4}>
+                  <span className={classes.done} style={{
+                    height: '100%'
+                  }}>
                     <Typography variant="body2" color="textSecondary">
                        Your Balance
                     </Typography>
-                    <Typography
-                      variant="h6"
-                      color="textPrimary"
-                      style={{ fontWeight: 'bold' }}
-                    >
                       {userSolBalance.toFixed(2)} SOL
-                    </Typography>
+                    </span>
                   </Grid>
                   <Grid item xs={12}>
                     {isActive && endDate && Date.now() < endDate.getTime() ? (

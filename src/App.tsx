@@ -6,44 +6,21 @@ import { DEFAULT_TIMEOUT } from './connection';
 import { clusterApiUrl } from '@solana/web3.js';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
-  AvanaWalletAdapter,
-  BackpackWalletAdapter,
-  BitKeepWalletAdapter,
-  BitpieWalletAdapter,
-  BloctoWalletAdapter,
-  BraveWalletAdapter,
-  CloverWalletAdapter,
-  Coin98WalletAdapter,
-  CoinbaseWalletAdapter,
-  CoinhubWalletAdapter,
-  ExodusWalletAdapter,
-  GlowWalletAdapter,
-  HuobiWalletAdapter,
-  HyperPayWalletAdapter,
-  KeystoneWalletAdapter,
-  KrystalWalletAdapter,
-  LedgerWalletAdapter,
-  MathWalletAdapter,
-  NekoWalletAdapter,
-  NightlyWalletAdapter,
-  NufiWalletAdapter,
-  ParticleAdapter,
-  PhantomWalletAdapter,
-  SafePalWalletAdapter,
-  SaifuWalletAdapter,
-  SalmonWalletAdapter,
-  SkyWalletAdapter,
-  SolflareWalletAdapter,
-  SolletExtensionWalletAdapter,
-  SolletWalletAdapter,
-  SolongWalletAdapter,
-  SpotWalletAdapter,
-  StrikeWalletAdapter,
-  TokenaryWalletAdapter,
-  TokenPocketWalletAdapter,
-  TorusWalletAdapter,
-  TrustWalletAdapter,
-  WalletConnectWalletAdapter
+  getPhantomWallet,
+  getSolflareWallet,
+  getSolletWallet,
+  getSolletExtensionWallet,
+  getBitKeepWallet,
+  getBloctoWallet,
+  getCoin98Wallet,
+  getBitpieWallet,
+  getCloverWallet,
+  getCoinhubWallet,
+  getLedgerWallet,
+  getMathWallet,
+  getSafePalWallet,
+  getSolflareWebWallet,
+  getSolongWallet,
 } from '@solana/wallet-adapter-wallets';
 
 import {
@@ -53,6 +30,8 @@ import {
 import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
 
 import { ThemeProvider, createTheme } from '@material-ui/core';
+
+import './styleWallet.css';
 
 const theme = createTheme({
   palette: {
@@ -85,43 +64,21 @@ const App = () => {
 
   const wallets = useMemo(
     () => [
-      new AvanaWalletAdapter(),
-      new BackpackWalletAdapter(),
-      new BitKeepWalletAdapter(),
-      new BitpieWalletAdapter(),
-      new BloctoWalletAdapter(),
-      new BraveWalletAdapter(),
-      new CloverWalletAdapter(),
-      new Coin98WalletAdapter(),
-      new CoinbaseWalletAdapter(),
-      new CoinhubWalletAdapter(),
-      new ExodusWalletAdapter(),
-      new GlowWalletAdapter(),
-      new HuobiWalletAdapter(),
-      new HyperPayWalletAdapter(),
-      new KeystoneWalletAdapter(),
-      new KrystalWalletAdapter(),
-      new LedgerWalletAdapter(),
-      new MathWalletAdapter(),
-      new NekoWalletAdapter(),
-      new NightlyWalletAdapter(),
-      new NufiWalletAdapter(),
-      new ParticleAdapter(),
-      new PhantomWalletAdapter(),
-      new SafePalWalletAdapter(),
-      new SaifuWalletAdapter(),
-      new SalmonWalletAdapter(),
-      new SkyWalletAdapter(),
-      new SolflareWalletAdapter(),
-      new SolletExtensionWalletAdapter({network}),
-      new SolletWalletAdapter({network}),
-      new SolongWalletAdapter(),
-      new SpotWalletAdapter(),
-      new StrikeWalletAdapter(),
-      new TokenaryWalletAdapter(),
-      new TokenPocketWalletAdapter(),
-      new TorusWalletAdapter(),
-      new TrustWalletAdapter(),
+      getPhantomWallet(),
+      getSolflareWallet(),
+      getSolletWallet({ network }),
+      getSolletExtensionWallet({ network }),
+      getBitKeepWallet(),
+      getBloctoWallet(),
+      getCoin98Wallet(),
+      getBitpieWallet(),
+      getCloverWallet(),
+      getCoinhubWallet(),
+      getLedgerWallet(),
+      getMathWallet(),
+      getSafePalWallet(),
+      getSolflareWebWallet(),
+      getSolongWallet(),
     ],
     [],
   );
@@ -130,7 +87,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
-          <WalletDialogProvider>
+          <WalletDialogProvider className='finger-background'>
             <Home
               candyMachineId={candyMachineId}
               connection={connection}

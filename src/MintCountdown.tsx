@@ -96,19 +96,19 @@ export const MintCountdown: React.FC<MintCountdownProps> = ({
     } else {
       return (
         <div className={classes.root} style={style}>
-          <Paper elevation={0} style={{ width: '35%' }}>
+          <Paper elevation={0} style={{ width: '35%', height: '100%' }}>
             <span className={classes.item}>
               {hours < 10 ? `0${hours}` : hours}
             </span>
             <span>hrs</span>
           </Paper>
-          <Paper elevation={0} style={{ width: '35%' }}>
+          <Paper elevation={0} style={{ width: '35%', height: '100%' }}>
             <span className={classes.item}>
               {minutes < 10 ? `0${minutes}` : minutes}
             </span>
             <span>mins</span>
           </Paper>
-          <Paper elevation={0} style={{ width: '35%' }}>
+          <Paper elevation={0} style={{ width: '35%', height: '100%' }}>
             <span className={classes.item}>
               {seconds < 10 ? `0${seconds}` : seconds}
             </span>
