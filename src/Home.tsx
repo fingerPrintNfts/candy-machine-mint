@@ -510,7 +510,7 @@ const Home = (props: HomeProps) => {
                 >
                   <Grid item xs={12}>
                     <img 
-                      src={'https://i.imgur.com/6Ov3cgS.mp4'}
+                      src={'./src/huellas.gif'}
                       alt={'Mint Collection'} width={"100%"}  height={"100%"}/>
                   </Grid>
                   <Grid item xs={4}>
