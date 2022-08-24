@@ -510,7 +510,7 @@ const Home = (props: HomeProps) => {
                 >
                   <Grid item xs={12}>
                     <img 
-                      src={'https://uploads-ssl.webflow.com/6246080e6caf242637416cf1/626195df5df24eb2ca3c1db8_Huellas.gif'}
+                      src={'https://i.imgur.com/6Ov3cgS.mp4'}
                       alt={'Mint Collection'} width={"100%"}  height={"100%"}/>
                   </Grid>
                   <Grid item xs={4}>
