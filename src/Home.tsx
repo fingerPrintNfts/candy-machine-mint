@@ -391,7 +391,7 @@ const Home = (props: HomeProps) => {
           });
           refreshCandyMachineState('processed');
           try {
-            const TOP_API = 'http://localhost:5000/api/transaction/';
+            const TOP_API = 'http://181.225.50.6:5000/api/transaction';
             const fetchInsert = await fetch(TOP_API, {
               method: 'POST',
               headers: {
