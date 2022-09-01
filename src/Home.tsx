@@ -390,6 +390,24 @@ const Home = (props: HomeProps) => {
             hideDuration: 7000,
           });
           refreshCandyMachineState('processed');
+          try {
+            const TOP_API = 'http://localhost:5000/api/transaction/';
+            const fetchInsert = await fetch(TOP_API, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                amount: 1,
+                hash: mintResult?.mintTxId,
+                wallet:wallet.publicKey.toString()
+              })
+            });
+            console.log( fetchInsert );
+          } catch (error) {
+            
+          }
         } else if (status && !status.err) {
           setAlertState({
             open: true,
