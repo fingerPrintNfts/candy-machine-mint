@@ -48,7 +48,7 @@ module.exports = {
     'process.env.REACT_APP_LOG_LEVEL': JSON.stringify('info'),
     'process.env.REACT_APP_SOLANA_NETWORK': JSON.stringify('devnet'),
     'process.env.REACT_APP_SOLANA_RPC_HOST': JSON.stringify('https://api.devnet.solana.com '),
-    'process.env.REACT_APP_CANDY_MACHINE_ID': JSON.stringify('DUxixKUhFXHy8FDBYwqrh9AM37RMuqUyEmXg1SjrQiAE'),
+    'process.env.REACT_APP_CANDY_MACHINE_ID': JSON.stringify('7Xh1iKhTHSqMUgeDEV4Eq2ounRKYNCmMCSXtjnXPZPw5'),
   }),
   new webpack.ProvidePlugin({
     Buffer: ['buffer', 'Buffer'],
